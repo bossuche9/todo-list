@@ -1,12 +1,27 @@
-# React + Vite
+# To Do List App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+This application is used to write aned keep track of things to do for the week
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation Instructions
 
-## Expanding the ESLint configuration
+1. Open a new gitub codespace for smooth testing
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+   ```bash
+   git pull
+
+   ```
+
+2. Compile the project using the following commands:
+   ```bash
+    cd 00-simple-entities
+    make
+   ```
+
+### Running the Simulation
+
+1. Run the compiled executable:
+   ```bash
+   ./bin/main.exe
+   ```
