@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TextTnputWithLabel from './shared/TextInputWithLabel';
 
 function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
   const [isEditing, setIsEditing] = useState(false);
   const [workingTitle, setworkingTitle] = useState(todo.title);
+
+  useEffect(() => {
+    setworkingTitle(todo.title);
+  }, [todo]);
 
   function handleCancel() {
     setworkingTitle(todo.title);
