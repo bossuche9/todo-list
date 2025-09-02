@@ -1,11 +1,16 @@
-function TodoViewForm() {
+function TodoViewForm({
+  sortDirection,
+  setSortDirection,
+  sortField,
+  setSortField,
+}) {
   return (
     <form>
       <div>
         <label>
           {' '}
           Sort by
-          <select>
+          <select onChange={(event) => setSortField(event)} value={sortField}>
             <option value="title"> Title</option>
             <option value="createdTime">Time added</option>
           </select>

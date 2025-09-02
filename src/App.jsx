@@ -237,7 +237,12 @@ function App() {
       />
 
       <hr />
-      <TodoViewForm></TodoViewForm>
+      <TodoViewForm
+        sortField={sortField}
+        setSortField={setSortField}
+        sortDirection={sortDirection}
+        setSortDirection={setSortDirection}
+      />
       {errorMessage && (
         <div>
           <hr />
