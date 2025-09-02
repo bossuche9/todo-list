@@ -51,7 +51,7 @@ function App() {
       }
     };
     fetchTodos();
-  }, []);
+  }, [sortField, sortDirection]);
 
   const addTodo = async (newTodo) => {
     const payload = {
