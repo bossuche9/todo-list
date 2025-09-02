@@ -1,11 +1,28 @@
-function TodoViewForm({
+function TodosViewForm({
   sortDirection,
   setSortDirection,
   sortField,
   setSortField,
+  queryString,
+  setQueryString,
 }) {
+  function preventRefresh(e) {
+    e.preventDefault();
+  }
+
   return (
-    <form>
+    <form onSubmit={preventRefresh}>
+      <div>
+        <label>Search todos</label>
+        <input
+          type="text"
+          value={queryString}
+          onChange={(e) => {
+            setQueryString(e.target.value);
+          }}
+        ></input>
+        <button onClick={() => setQueryString('')}>Clear</button>
+      </div>
       <div>
         <label>
           {' '}
@@ -34,4 +51,4 @@ function TodoViewForm({
   );
 }
 
-export default TodoViewForm;
+export default TodosViewForm;
