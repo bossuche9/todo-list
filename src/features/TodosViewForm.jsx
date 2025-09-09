@@ -32,7 +32,9 @@ function TodosViewForm({
             setLocalQueryString(e.target.value);
           }}
         ></input>
-        <button onClick={() => setLocalQueryString('')}>Clear</button>
+        <button type="button" onClick={() => setLocalQueryString('')}>
+          Clear
+        </button>
       </div>
       <div>
         <label>
