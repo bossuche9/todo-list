@@ -10,7 +10,13 @@ function TodosViewForm({
 }) {
   const [localQueryString, setLocalQueryString] = useState(queryString);
 
-  useEffect;
+  useEffect(() => {
+    const debounce = setTimeout(() => {
+      setQueryString(localQueryString);
+    }, 500);
+
+    return () => clearTimeout(debounce);
+  }, [localQueryString, setQueryString]);
   function preventRefresh(e) {
     e.preventDefault();
   }
