@@ -1,5 +1,5 @@
 body {
-  background-color: azure;
+  background-color: #f7f9fc
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -13,14 +13,13 @@ button {
   color: white;
   padding: 0.5rem 1rem;
   margin: 0px 5px 5px;
-  border-radius: 15px;
+  border-radius: 6px;
   border-width: thick;
   cursor: pointer;
 }
 
 button:disabled {
   background-color: grey;
-  order-color: black;
   cursor: not-allowed;
 }
 
