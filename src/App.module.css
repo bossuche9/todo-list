@@ -1,0 +1,15 @@
+.container {
+  padding-top: 190px;
+  display: grid;
+  place-items: center;
+  min-height: 50vh;
+}
+
+.errorBox {
+  border: 2px solid red;
+  color: red;
+  padding: 10px 5px 3px 3px;
+  margin-top: 1rem;
+  border-radius: 8px;
+  background-color: #ffe5e5;
+}
