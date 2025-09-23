@@ -1,4 +1,13 @@
 import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+
+const StyledForm = styled.form`
+  padding: 1rem;
+`;
+
+const StyledContainer1 = styled.div`
+  padding: 1rem;
+`;
 
 function TodosViewForm({
   sortDirection,
@@ -22,8 +31,8 @@ function TodosViewForm({
   }
 
   return (
-    <form onSubmit={preventRefresh}>
-      <div>
+    <StyledForm onSubmit={preventRefresh}>
+      <StyledContainer1>
         <label>Search todos</label>
         <input
           type="text"
@@ -35,7 +44,7 @@ function TodosViewForm({
         <button type="button" onClick={() => setLocalQueryString('')}>
           Clear
         </button>
-      </div>
+      </StyledContainer1>
       <div>
         <label>
           {' '}
@@ -60,7 +69,7 @@ function TodosViewForm({
           </select>
         </label>
       </div>
-    </form>
+    </StyledForm>
   );
 }
 
