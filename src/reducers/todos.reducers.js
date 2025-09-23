@@ -1,11 +1,11 @@
-const initialState = {
+export const initialState = {
   todoList: [],
   isLoading: false,
   isSaving: false,
   errorMessage: 'Test error on Load',
 };
 
-const actions = {
+export const actions = {
   //actions in useEffect that loads todos
   fetchTodos: 'fetchTodos',
   loadTodos: 'loadTodos',
@@ -24,14 +24,14 @@ const actions = {
   clearError: 'clearError',
 };
 
-function reducer(state = initialState, action) {
+export function reducer(state = initialState, action) {
   switch (action.type) {
-    case action.fetchTodos:
+    case actions.fetchTodos:
       return {
         ...state,
         isLoading: true,
       };
-    case action.loadTodos:
+    case actions.loadTodos:
       const fetchedTodos = action.records.map((record) => {
         const todo = {
           id: record.id,
@@ -47,18 +47,19 @@ function reducer(state = initialState, action) {
         todoList: fetchedTodos,
         isLoading: false,
       };
-    case action.setLoadError:
+    case actions.setLoadError:
       return {
         ...state,
         errorMessage: action.error.message,
         isLoading: false,
+        isSaving: false,
       };
-    case action.startRequest:
+    case actions.startRequest:
       return {
         ...state,
         isSaving: true,
       };
-    case action.addTodo:
+    case actions.addTodo:
       const record = action.records[0];
       const savedTodo = {
         id: record.id,
@@ -70,7 +71,7 @@ function reducer(state = initialState, action) {
         todoList: [...state.todoList, savedTodo],
         isSaving: false,
       };
-    case action.endRequest:
+    case actions.endRequest:
       return {
         ...state,
         isLoading: false,
@@ -83,7 +84,7 @@ function reducer(state = initialState, action) {
           todo.id === action.id ? { ...todo, isCompleted: true } : todo
         ),
       };
-    case action.updateTodo:
+    case actions.updateTodo:
       return {
         ...state,
         todoList: state.todoList.map((todo) =>
@@ -92,19 +93,22 @@ function reducer(state = initialState, action) {
             : todo
         ),
       };
-    case action.revertTodo:
+
+    case actions.revertTodo:
       return {
         ...state,
         todoList: state.todoList.map((todo) =>
           todo.id === action.originalTodo.id ? action.originalTodo : todo
         ),
       };
-    case action.clearError:
+
+    case actions.clearError:
       return {
         ...state,
         errorMessage: '',
       };
+
+    default:
+      return state;
   }
 }
-
-export default [initialState, actions, reducer];
