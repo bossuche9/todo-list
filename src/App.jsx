@@ -1,8 +1,8 @@
 import './App.css';
 import styles from './App.module.css';
+import { useEffect, useReducer, useState } from 'react';
 import TodoList from './features/TodoList/TodoList';
 import TodoForm from './features/TodoForm';
-import { useEffect, useReducer, useState } from 'react';
 import TodosViewForm from './features/TodosViewForm';
 import { useCallback } from 'react';
 import {
@@ -10,6 +10,9 @@ import {
   actions as todoActions,
   initialState as initialTodosState,
 } from './reducers/todos.reducers';
+import TodosPage from './pages/TodosPage';
+import { Routes } from 'react-router';
+import { Route } from 'react-router';
 
 const url = `https://api.airtable.com/v0/${import.meta.env.VITE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
 
@@ -203,23 +206,25 @@ function App() {
   return (
     <div className={styles.container}>
       <h1>Todo List</h1>
-      <TodoForm onAddTodo={addTodo} isSaving={todoState.isSaving} />
-      <TodoList
-        todoList={todoState.todoList}
-        onCompleteTodo={completeTodo}
-        onUpdateTodo={updateTodo}
-        isLoading={todoState.isLoading}
-      />
-
-      <hr />
-      <TodosViewForm
-        sortField={sortField}
-        setSortField={setSortField}
-        sortDirection={sortDirection}
-        setSortDirection={setSortDirection}
-        queryString={queryString}
-        setQueryString={setQueryString}
-      />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <TodosPage
+              todoState={todoState}
+              addTodo={addTodo}
+              completeTodo={completeTodo}
+              updateTodo={updateTodo}
+              sortField={sortField}
+              setSortField={setSortField}
+              sortDirection={sortDirection}
+              setSortDirection={setSortDirection}
+              queryString={queryString}
+              setQueryString={setQueryString}
+            />
+          }
+        />
+      </Routes>
       {todoState.errorMessage && (
         <div className={styles.errorBox}>
           <hr />
