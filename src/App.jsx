@@ -11,20 +11,20 @@ import {
   initialState as initialTodosState,
 } from './reducers/todos.reducers';
 import TodosPage from './pages/TodosPage';
-import { Routes } from 'react-router';
+import { Routes, useLocation } from 'react-router';
 import { Route } from 'react-router';
+import Header from './shared/Header';
 
 const url = `https://api.airtable.com/v0/${import.meta.env.VITE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
 
 function App() {
   const [todoState, dispatch] = useReducer(todosReducer, initialTodosState);
-  const [todoList, setTodoList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSaving, setIsSaving] = useState(false);
   const [sortField, setSortField] = useState('createdTime');
   const [sortDirection, setSortDirection] = useState('desc');
   const [queryString, setQueryString] = useState('');
   const token = `Bearer ${import.meta.env.VITE_PAT}`;
+  const [title, setTitle] = useState('Todo List');
+  const location = useLocation();
   const encodeUrl = useCallback(() => {
     let searchQuery = '';
     if (queryString) {
@@ -64,6 +64,12 @@ function App() {
     };
     fetchTodos();
   }, [sortField, sortDirection, queryString]);
+
+  useEffect(() => {
+    if (location.pathname === '/') setTitle('TodoList');
+    else if (location.pathname === '/about') setTitle('About');
+    else setTitle('Not Found');
+  }, [location]);
 
   const addTodo = async (newTodo) => {
     const payload = {
@@ -205,7 +211,7 @@ function App() {
 
   return (
     <div className={styles.container}>
-      <h1>Todo List</h1>
+      <Header title={title} />
       <Routes>
         <Route
           path="/"
@@ -224,6 +230,8 @@ function App() {
             />
           }
         />
+        <Route path="/about" element={<h1>About</h1>} />
+        <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
       {todoState.errorMessage && (
         <div className={styles.errorBox}>

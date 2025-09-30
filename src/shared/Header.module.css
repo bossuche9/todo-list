@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  justify-content: space-between; /* h1 left, nav right */
+  align-items: center;
+  padding: 1rem;
+}
+
+.title {
+  text-align: center; /* centers text inside h1 itself */
+  flex: 1; /* takes up space so nav doesn’t push it */
+}
+
+.nav {
+  display: flex;
+  gap: 1rem; /* space between links */
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.active {
+  color: gray; /* subdued compared to normal text */
+  text-decoration: underline;
+}
+
+.inactive {
+  color: black; /* primary text color */
+  text-decoration: none;
+}
